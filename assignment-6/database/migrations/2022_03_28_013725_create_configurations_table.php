@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('configurations');
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
