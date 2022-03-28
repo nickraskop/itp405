@@ -20,6 +20,14 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('value');
         });
+
+        DB::table('configurations')->insert(
+            array(
+                'name' => 'maintenance-mode',
+                'value' => false
+            )
+        );
+    
     }
 
     /**
