@@ -16,7 +16,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/secret', [MaintenanceController::class, 'secret'])->name('maintenance.edit');
+Route::post('/update', [MaintenanceController::class, 'update'])->name('maintenance.update');
+
 
 Route::middleware (['maintenance-mode'])->group(function() {
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
+    Route::get('/test', [MaintenanceController::class, 'test'])->name('maintenance.test');
 });
