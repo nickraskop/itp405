@@ -14,10 +14,10 @@ use App\Http\Controllers\MaintenanceController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/hi', function () {
     return view('welcome');
 });
 
-Route::middleware(['maintenance-mode'])->group(function()) {
+Route::middleware (['maintenance-mode'])->group(function() {
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
-}
+});

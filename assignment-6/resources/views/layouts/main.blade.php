@@ -8,7 +8,6 @@
     <title>@yield("title")</title>
 </head>
 <body>
-    <h1><a href="{{ route('question.index') }}">Q & A</a></h1>
     @yield("content")
 </body>
 </html>
