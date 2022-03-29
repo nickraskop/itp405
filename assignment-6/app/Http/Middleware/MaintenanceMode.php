@@ -17,10 +17,14 @@ class MaintenanceMode
      */
     public function handle(Request $request, Closure $next)
     {
-        $isMaintenanceMode = Configuration::all()->first()->value;
-        if ($isMaintenanceMode) {
-            return $next($request);
+        $requestedRouteName = $request->route()->getName();
+        $isMaintenanceMode = Configuration::where('name', '=', 'maintenance-mode')->first()->value;
+        if ($isMaintenanceMode && $requestedRouteName != 'maintenance.index') {
+            return redirect()->route('maintenance.index');
         }
-        return redirect()->route('home.index');
+        if (!$isMaintenanceMode && $requestedRouteName == 'maintenance.index') {
+            return redirect()->route('home.index');
+        }
+        return $next($request);
     }
 }
