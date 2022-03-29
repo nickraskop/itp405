@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\MaintenanceController;
 |
 */
 
-Route::get('/hi', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::middleware (['maintenance-mode'])->group(function() {
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');

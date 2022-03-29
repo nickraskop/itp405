@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Configuration;
 
 class MaintenanceMode
 {
@@ -16,6 +17,10 @@ class MaintenanceMode
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $isMaintenanceMode = Configuration::all()->first()->value;
+        if ($isMaintenanceMode) {
+            return $next($request);
+        }
+        return redirect()->route('home.index');
     }
 }
