@@ -24,3 +24,7 @@ Route::middleware (['maintenance-mode'])->group(function() {
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
     Route::get('/test', [MaintenanceController::class, 'test'])->name('maintenance.test');
 });
+
+if (env('APP_ENV') !== 'local') {
+    URL::forceScheme('https');
+}
