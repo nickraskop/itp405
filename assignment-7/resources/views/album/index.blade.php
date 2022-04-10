@@ -9,15 +9,18 @@
         </div>
     @endif
 
-    <div class="mb-3 text-end">
-        <a href="{{ route('album.create') }}">New Album</a>
-    </div>
+    @if (Auth::check())
+        <div class="mb-3 text-end">
+            <a href="{{ route('album.create') }}">New Album</a>
+        </div>
+    @endif
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Album</th>
-                <th colspan="2">Artist</th>
+                <th>Artist</th>
+                <th colspan="2">Creator</th>
             </tr>
         </thead>
         <tbody>
@@ -30,10 +33,15 @@
                         {{$album->artist->name}}
                     </td>
                     <td>
+                        {{ $album->user->name }}
+                    </td>
+                    @if (!Gate::denies('edit-album', $album))
+                    <td>
                         <a href="{{ route('album.edit', [ 'id' => $album->id ]) }}">
                             Edit
                         </a>
                     </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

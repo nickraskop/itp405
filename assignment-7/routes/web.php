@@ -22,16 +22,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-    Route::get('/albums', [AlbumController::class, 'index'])->name('album.index');
-});
+// Route::middleware(['auth'])->group(function() {
+// });
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/albums/new', [AlbumController::class, 'create'])->name('album.create');
 Route::post('/albums', [AlbumController::class, 'store'])->name('album.store');
 Route::get('/albums/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');
 Route::post('/albums/{id}', [AlbumController::class, 'update'])->name('album.update');
+
+
+
+
+
+Route::get('/albums', [AlbumController::class, 'index'])->name('album.index');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('registration.index');
 Route::post('/register', [RegisterController::class, 'register'])->name('registration.create');
