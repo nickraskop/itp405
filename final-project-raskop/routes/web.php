@@ -40,3 +40,11 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
 
 
 Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('comment.store');
+
+use Illuminate\Support\Facades\URL;
+
+// your routes
+
+if (env('APP_ENV') !== 'local') {
+    URL::forceScheme('https');
+}
