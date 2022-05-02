@@ -19,6 +19,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->pfp = $request->input('pfp');
         $user->password = Hash::make($request->input('password')); // Encrypt our password using bcrypt
         $user->save();
 

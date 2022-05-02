@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProfilePic extends Model
 {
     use HasFactory;
-    protected $fillable = ["name", "file_path", "user_id", "created_at", "updated_at"];
+    protected $fillable = ["photo", "user_id", "created_at", "updated_at"];
 }

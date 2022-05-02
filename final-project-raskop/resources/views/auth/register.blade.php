@@ -7,7 +7,7 @@
     <form method="post" action="{{ route('registration.create') }}">
         @csrf
         <div class="mb-3">
-            <label class="form-label" for="name">Full Name</label>
+            <label class="form-label" for="name">Name</label>
             <input type="text" id="name" name="name" class="form-control">
         </div>
         <div class="mb-3">
@@ -18,6 +18,9 @@
             <label class="form-label" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control">
         </div>
+        <p>Profile Picture</p>
+        <input type="hidden" name="pfp" id="pfp" class="simple-file-upload">
+        <br>
         <input type="submit" value="Register" class="btn btn-primary">
     </form>
 @endsection

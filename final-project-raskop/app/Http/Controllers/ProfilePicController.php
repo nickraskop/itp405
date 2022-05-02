@@ -54,7 +54,6 @@ class ProfilePicController extends Controller
 
             // Store the record, using the new file hashname which will be it's new filename identity.
             $pfp = new ProfilePic();
-            $pfp->name = $request->get('name');
             $pfp->file_path = $request->file->hashName();
             $pfp->user_id = Auth::user()->id;
             $pfp->save(); // Finally, save the record.

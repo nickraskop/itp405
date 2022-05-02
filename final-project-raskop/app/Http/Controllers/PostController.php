@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Models\UserUser;
 use Auth;
 
 class PostController extends Controller
@@ -16,28 +17,16 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-      // Validate the inputs
-      $request->validate([
-      ]);
+      $post = new Post();
+      $post->caption = $request->get('caption');
+      $post->photo = $request->get('photo');
+      $post->user_id = Auth::user()->id;
+      $post->save();
 
-      // ensure the request has a file before we attempt anything else.
-      if ($request->hasFile('file')) {
-
-        $request->validate([
-          'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
-        ]);
-
-        // Save the file locally in the storage/profilePic/ folder under a new folder named /profilePic
-        // $request->file->store('profilePic', 'public');
-        $request->file('file')->store('public/posts/');
-
-        // Store the record, using the new file hashname which will be it's new filename identity.
-        $pfp = new Post();
-        $pfp->caption = $request->get('caption');
-        $pfp->file_path = $request->file->hashName();
-        $pfp->user_id = Auth::user()->id;
-        $pfp->save(); // Finally, save the record.
-      }
+      $stuff = new UserUser();
+      $stuff->follower_id = Auth::user()->id;
+      $stuff->following_id = 3;
+      $stuff->save();
 
       return redirect()
         ->route('profile.index');
@@ -48,6 +37,7 @@ class PostController extends Controller
       $post = Post::all()->where('id', '=', $id)->first();
       return view('post.show', [
         'post' => $post,
+        'user' => Auth::user(),
       ]);
     }
 }

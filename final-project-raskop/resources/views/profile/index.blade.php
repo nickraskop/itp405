@@ -66,6 +66,9 @@
     #pics img {
       width: 200px;
     }
+    #pics img:hover {
+      opacity: .6;
+    }
     #about {
 
     }
@@ -83,13 +86,17 @@
     #sub button {
 
     }
+    #stats a {
+      text-decoration: none;
+      color: black;
+    }
 
   </style>
   <div id="content">
     <div id="left">
       <div id="heading">
         <div id="pfp">
-          <img src="https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg" />
+          <img src="{{ $user->pfp }}" />
         </div>
         <div id="info">
           <div id="userEdit">
@@ -97,9 +104,9 @@
             <button>Edit Profile</button>
           </div>
           <div id="stats">
-            <p><b>1</b> Posts</p>
-            <p><b>1</b> Followers</p>
-            <p><b>1</b> Following</p>
+            <p><b>{{ $numPosts }}</b> Posts</p>
+            <a href="/"><p><b>{{ $numFollowers }}</b> Followers</p></a>
+            <a href="/"><p><b>{{ $numFollowing }}</b> Following</p></a>
           </div>
           <div id="sub">
             <div id="sub2">
@@ -114,9 +121,9 @@
       </div>
       <div id="bio"><p>Beats, bears, battlestar galactica.</p></div>
       <div id="pics">
-        @foreach ($pics as $pic)
+        @foreach ($posts as $post)
           <div id="pic">
-            <a href="{{ route('post.show', ['id' => $pic->id ]) }}"><img src="{{ url('storage/posts/'.$pic->file_path) }}" alt=""><a>
+            <a href="{{ route('post.show', ['id' => $post->id ]) }}"><img src="{{ $post->photo }}" alt=""><a>
           </div>
         @endforeach   
       </div>

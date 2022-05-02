@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('caption');
-            $table->string('file_path');
+            $table->string('photo');
             $table->foreignId('user_id');
             $table->timestamps();
         });

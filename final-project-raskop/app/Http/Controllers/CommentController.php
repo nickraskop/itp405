@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Comment;
+use Auth;
 
 class CommentController extends Controller
 {
@@ -28,6 +29,7 @@ class CommentController extends Controller
       $comment = new Comment();
       $comment->body = $request->input('body');
       $comment->post_id = $id;
+      $comment->user_id = Auth::user()->id;
       $comment->save();
 
       return redirect()

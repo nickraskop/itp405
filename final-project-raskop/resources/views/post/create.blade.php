@@ -14,12 +14,10 @@
       <!-- Add CSRF Token -->
       @csrf
     <div class="form-group">
-      <input type="file" name="file" required>
-    </div>
-    <div class="form-group">
       <label>Caption</label>
       <input type="text" class="form-control" name="caption" required>
     </div>
+    <input type="hidden" name="photo" id="photo" class="simple-file-upload">
     <button type="submit">Submit</button>
   </form>
 @endsection
