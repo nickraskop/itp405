@@ -62,6 +62,7 @@
       justify-content: center;
       width: 600px;
       flex-wrap: wrap;
+      justify-content: start;
     }
     #pics img {
       width: 200px;

@@ -53,10 +53,15 @@
       </a>
       <img src="{{ $post->photo }}" alt="">
       <p>{{ $post->caption }}</p>
-      <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">
-        @csrf
-        <button type="submit">Favorite</button>
-      </form>
+      @if($post->favorited->where('id', '=', Auth::user()->id)->first() === null)
+        <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">
+          @csrf
+          <button type="submit">Favorite</button>
+        </form>
+      @else
+        <p>Favorited</p>
+      @endif
+      <p><b>{{ $post->favorited->count() }} favorites</b></p>
     </div>
   @endforeach
 @endsection
