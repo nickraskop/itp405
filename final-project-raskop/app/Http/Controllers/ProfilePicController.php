@@ -59,7 +59,7 @@ class ProfilePicController extends Controller
             $pfp->save(); // Finally, save the record.
         }
 
-        return view('profile.index', [
+        return view('profile.show', [
             'user' => Auth::user(),
             'pics' => $pics,
           ]);

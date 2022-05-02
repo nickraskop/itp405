@@ -60,7 +60,7 @@ class PostController extends Controller
       }
 
       return redirect()
-        ->route('profile.index');
+        ->route('profile.show');
     }
 
     /**

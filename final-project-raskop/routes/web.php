@@ -21,7 +21,8 @@ use App\Http\Controllers\FollowController;
 |
 */
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+// Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 
@@ -33,8 +34,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('registration.index');
 Route::post('/register', [RegisterController::class, 'register'])->name('registration.create');
 
-Route::resource('profilePics', 'App\Http\Controllers\ProfilePicController');
-
 Route::get('/new_post', [PostController::class, 'create'])->name('post.create');
 Route::post('/store_post', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
@@ -42,8 +41,11 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
 
 Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('comment.store');
 
-Route::get('followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
-Route::get('following/{id}', [FollowController::class, 'following'])->name('follow.following');
+Route::get('/followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
+Route::get('/following/{id}', [FollowController::class, 'following'])->name('follow.following');
+Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow.follow');
+
+
 use Illuminate\Support\Facades\URL;
 
 // your routes

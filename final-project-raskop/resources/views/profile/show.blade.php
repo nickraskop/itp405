@@ -101,7 +101,16 @@
         <div id="info">
           <div id="userEdit">
             <h1 id="username">{{ $user->name }}</h1> 
-            <button>Edit Profile</button>
+            @if (Auth::user()->id == $user->id)
+              <button>Edit Profile</button>
+            @else
+              @if (Auth::user()->following->where('id', '=', '$user->id')->count() > 0)
+                <button>Follow</button>
+                <p>{{ Auth::user()->following->first()->id }} {{ $user->id }}</p>
+              @else
+                <p>Following</p>
+              @endif
+            @endif
           </div>
           <div id="stats">
             <p><b>{{ $numPosts }}</b> Posts</p>

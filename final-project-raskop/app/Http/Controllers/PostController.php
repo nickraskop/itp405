@@ -23,13 +23,8 @@ class PostController extends Controller
       $post->user_id = Auth::user()->id;
       $post->save();
 
-      $stuff = new UserUser();
-      $stuff->follower_id = Auth::user()->id;
-      $stuff->following_id = 3;
-      $stuff->save();
-
       return redirect()
-        ->route('profile.index');
+        ->route('profile.show', ['id' => Auth::user()->id]);
     }
 
     public function show($id)

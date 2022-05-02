@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserUser;
 use Hash;
 use Auth;
 
@@ -27,9 +28,9 @@ class FollowController extends Controller
     //     return redirect()->route('profile.index');
     // }
 
-    public function followers()
+    public function followers($id)
     {
-      $user = Auth::user();
+      $user = User::where('id', '=', $id)->first();
       $followers = $user->followers;
 
       return view('follow.followers', [
@@ -37,13 +38,26 @@ class FollowController extends Controller
       ]);
     }
 
-    public function following()
+    public function following($id)
     {
-      $user = Auth::user();
+      $user = User::where('id', '=', $id)->first();
       $following = $user->following;
 
       return view('follow.following', [
         'followings' => $following,
       ]);
+    }
+
+    public function follow($id)
+    {
+      $follower = Auth::user();
+
+      $follow = new UserUser();
+      $follow->follower_id = $follower->id;
+      $follow->following_id = $id;
+      $follow->save();
+
+      return redirect()
+        ->route('home.index')->with('success', "Succesfully followed");
     }
 }

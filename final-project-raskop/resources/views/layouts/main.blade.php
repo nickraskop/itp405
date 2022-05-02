@@ -57,7 +57,7 @@
     <ul>
       <li><a href="/">Home</a></li>
       @if (Auth::check())
-        <li><a href="{{ route('profile.index') }}">Profile</a></li>
+        <li><a href="{{ route('profile.show', [ 'id' => Auth::user() ]) }}">Profile</a></li>
         <li>
           <form method="post" action="{{ route('auth.logout') }}">
             @csrf
@@ -74,6 +74,11 @@
           <div class="alert alert-danger" role="alert">
               {{ session('error') }}
           </div>
+      @endif
+      @if (session('success'))
+        <div class="alert alert-success" role="alert">
+          {{ session('success') }}
+        </div>
       @endif
       @yield("content")
     </main>
