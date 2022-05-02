@@ -105,8 +105,8 @@
           </div>
           <div id="stats">
             <p><b>{{ $numPosts }}</b> Posts</p>
-            <a href="/"><p><b>{{ $numFollowers }}</b> Followers</p></a>
-            <a href="/"><p><b>{{ $numFollowing }}</b> Following</p></a>
+            <a href="{{ route('follow.followers', ['id' => $user->id]) }}"><p><b>{{ $numFollowers }}</b> Followers</p></a>
+            <a href="{{ route('follow.following', ['id' => $user->id]) }}"><p><b>{{ $numFollowing }}</b> Following</p></a>
           </div>
           <div id="sub">
             <div id="sub2">
