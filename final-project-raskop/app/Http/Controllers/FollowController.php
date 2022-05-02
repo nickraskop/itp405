@@ -60,4 +60,17 @@ class FollowController extends Controller
       return redirect()
         ->route('home.index')->with('success', "Succesfully followed");
     }
+
+    public function followFromProfile($id)
+    {
+      $follower = Auth::user();
+
+      $follow = new UserUser();
+      $follow->follower_id = $follower->id;
+      $follow->following_id = $id;
+      $follow->save();
+
+      return redirect()
+        ->route('profile.show', ['id' => $id])->with('success', "Succesfully followed");
+    }
 }

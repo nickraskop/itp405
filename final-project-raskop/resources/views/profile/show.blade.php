@@ -104,9 +104,11 @@
             @if (Auth::user()->id == $user->id)
               <button>Edit Profile</button>
             @else
-              @if (Auth::user()->following->where('id', '=', '$user->id')->count() > 0)
-                <button>Follow</button>
-                <p>{{ Auth::user()->following->first()->id }} {{ $user->id }}</p>
+              @if (Auth::user()->following->where('id', '=', $user->id)->first() === null)
+              <form action="{{ route('follow.followFromProfile', [ 'id' => $user->id ]) }}" method="post">
+                @csrf
+                <button type="submit">Follow</button>
+              </form>
               @else
                 <p>Following</p>
               @endif
@@ -124,7 +126,7 @@
                 <p>Joined on {{ $user->created_at }}</p>
               </div>
             </div>
-            <a href="{{ route('post.create') }}"><img src="{{ url('storage/assets/flower_upload.jpg') }}" alt=""></a>
+            <a href="{{ route('post.create') }}"><img src="https://ecoloftinsulations.co.uk/wp-content/uploads/2019/10/Healthier-1.png" alt=""></a>
           </div>
         </div>
       </div>

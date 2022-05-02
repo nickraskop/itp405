@@ -8,7 +8,15 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\FavoriteController;
 
+use Illuminate\Support\Facades\URL;
+
+// your routes
+
+if (env('APP_ENV') !== 'local') {
+    URL::forceScheme('https');
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +52,7 @@ Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('c
 Route::get('/followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
 Route::get('/following/{id}', [FollowController::class, 'following'])->name('follow.following');
 Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow.follow');
+Route::post('/followP/{id}', [FollowController::class, 'followFromProfile'])->name('follow.followFromProfile');
 
-
-use Illuminate\Support\Facades\URL;
-
-// your routes
-
-if (env('APP_ENV') !== 'local') {
-    URL::forceScheme('https');
-}
+Route::post('/favorite/{id}', [FavoriteController::class, 'favorite'])->name('favorite.favorite');
+Route::get('/favorites/{id}', [FavoriteController::class, 'index'])->name('favorite.index');

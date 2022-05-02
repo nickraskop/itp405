@@ -34,15 +34,15 @@
       color: black;
     }
   </style>
-  @foreach($posts as $post)
+  @foreach($favorites as $favorite)
     <div id="post">
-      <a href="{{ route('profile.show', [ 'id' => $post->user->id ]) }}">
+      <a href="{{ route('profile.show', [ 'id' => $favorite->user->id ]) }}">
         <div id="user">
-          <img src="{{ $post->user->pfp }}" alt="">
-          <h3>{{ $post->user->name }}</h3>
-          @if (Auth::check() && Auth::user()->id === $post->user->id)
-          @elseif (Auth::check() && Auth::user()->following->where('id', '=', $post->user->id)->first() === null)
-          <form action="{{ route('follow.follow', [ 'id' => $post->user->id ]) }}" method="post">
+          <img src="{{ $favorite->user->pfp }}" alt="">
+          <h3>{{ $favorite->user->name }}</h3>
+          @if (Auth::check() && Auth::user()->id === $favorite->user->id)
+          @elseif (Auth::check() && Auth::user()->following->where('id', '=', $favorite->user->id)->first() === null)
+          <form action="{{ route('follow.follow', [ 'id' => $favorite->user->id ]) }}" method="post">
             @csrf
             <button type="submit">Follow</button>
           </form>
@@ -51,9 +51,9 @@
           @endif
         </div>
       </a>
-      <img src="{{ $post->photo }}" alt="">
-      <p>{{ $post->caption }}</p>
-      <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">
+      <img src="{{ $favorite->photo }}" alt="">
+      <p>{{ $favorite->caption }}</p>
+      <form action="{{ route('favorite.favorite', [ 'id' => $favorite->id ]) }}" method="post">
         @csrf
         <button type="submit">Favorite</button>
       </form>

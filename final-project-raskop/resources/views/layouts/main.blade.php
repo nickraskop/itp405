@@ -58,6 +58,7 @@
       <li><a href="/">Home</a></li>
       @if (Auth::check())
         <li><a href="{{ route('profile.show', [ 'id' => Auth::user() ]) }}">Profile</a></li>
+        <li><a href="{{ route('favorite.index', [ 'id' => Auth::user() ]) }}">Favorites</a></li>
         <li>
           <form method="post" action="{{ route('auth.logout') }}">
             @csrf
