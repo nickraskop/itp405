@@ -47,7 +47,7 @@
               <button type="submit">Follow</button>
             </form>
           @else
-          <form action="{{ route('follow.unfollow', [ 'id' => $post->user->id ]) }}" method="post">
+          <form action="{{ route('follow.unfollow', [ 'id' => $post->user->id, 'from' => 'home']) }}" method="post">
             @csrf
             <button type="submit">Unfollow</button>
           </form>
@@ -56,6 +56,7 @@
       </a>
       <a href="{{ route('post.show', ['id' => $post->id]) }}"><img src="{{ $post->photo }}" alt=""></a>
       <h4>🗣️ {{ $post->caption }}</h4>
+      <p>Posted on {{date_format($post->created_at, 'n/j/Y')}} at {{date_format($post->created_at, 'g:i A')}}</p>
       @if($post->favorited->where('id', '=', Auth::user()->id)->first() === null)
         <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">
           @csrf

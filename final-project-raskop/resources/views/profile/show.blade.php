@@ -4,7 +4,15 @@
   <style>
     #content {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
+      border-color: #d5d8de;
+      border-style: solid;
+      border-width: 1px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px;
+      padding: 30px;
     }
     #left {
       display: flex;
@@ -59,6 +67,7 @@
       margin-right: 10px;
       width: fit-content;
       white-space: nowrap;
+      padding: 10px;
     }
     #bio {
       text-align: left;
@@ -104,6 +113,11 @@
       text-decoration: none;
       color: black;
     }
+    #follow {
+      display: flex;
+      width: 220px;
+      justify-content: space-between;
+    }
 
   </style>
   <div id="content">
@@ -124,7 +138,10 @@
                 <button type="submit">Follow</button>
               </form>
               @else
-                <p>Following</p>
+              <form action="{{ route('follow.unfollow', [ 'id' => $user->id, 'from' => 'profile' ]) }}" method="post">
+                @csrf
+                <button type="submit">Unfollow</button>
+              </form>
               @endif
             @endif
           </div>
@@ -139,6 +156,14 @@
                 <p>📍  {{ $user->location }}</p>
                 <p>📅  Joined on {{ date_format($user->created_at, 'n/j/Y') }}</p>
                 <p>👋  {{ $user->bio }}</p>
+                <div id="follow">
+                  @if (Auth::user()->following->where('id', '=', $user->id)->first() !== null)
+                    <p>✔️ Following</p>
+                  @endif
+                  @if (Auth::user()->followers->where('id', '=', $user->id)->first() !== null)
+                    <p>✔️ Follows you</p>
+                  @endif
+                </div>
               </div>
             </div>
             <a href="{{ route('post.create') }}"><img src="https://ecoloftinsulations.co.uk/wp-content/uploads/2019/10/Healthier-1.png" alt=""></a>
@@ -151,11 +176,6 @@
             <a href="{{ route('post.show', ['id' => $post->id ]) }}"><img src="{{ $post->photo }}" alt=""><a>
           </div>
         @endforeach   
-      </div>
-    </div>
-    <div id="right">
-      <div id="about">
-        <h1>About my Garden</h1>
       </div>
     </div>
   </div>

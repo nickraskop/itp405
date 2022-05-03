@@ -54,7 +54,7 @@ Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('c
 Route::get('/followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
 Route::get('/following/{id}', [FollowController::class, 'following'])->name('follow.following');
 Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow.follow');
-Route::post('/unfollow/{id}', [FollowController::class, 'unfollow'])->name('follow.unfollow');
+Route::post('/unfollow/{id}/{from}', [FollowController::class, 'unfollow'])->name('follow.unfollow');
 Route::post('/followP/{id}', [FollowController::class, 'followFromProfile'])->name('follow.followFromProfile');
 
 Route::post('/favorite/{id}', [FavoriteController::class, 'favorite'])->name('favorite.favorite');
