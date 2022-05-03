@@ -8,6 +8,7 @@ use App\Models\ProfilePic;
 use App\Models\Post;
 use App\Models\User;
 use Auth;
+use Hash;
 
 class ProfileController extends Controller
 {
@@ -29,5 +30,27 @@ class ProfileController extends Controller
         'numFollowing' => $numFollowing,
         'following' => $following,
       ]);
+    }
+
+    public function edit()
+    {
+      return view('profile.edit', [
+        'user' => Auth::user(),
+      ]);
+    }
+
+    public function update(Request $request)
+    {
+      // $request->validate()
+      User::where('id', '=', Auth::user()->id)->update([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($request->input('password')), // Encrypt our password using bcrypt
+      ]);
+
+
+
+      return redirect()
+        ->route('profile.show', ['id' => Auth::user()->id])->with('success', "Successfully edited profile");
     }
 }

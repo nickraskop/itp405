@@ -73,4 +73,14 @@ class FollowController extends Controller
       return redirect()
         ->route('profile.show', ['id' => $id])->with('success', "Succesfully followed");
     }
+
+    public function unfollow($id)
+    {
+      UserUser::where('follower_id', '=', Auth::user()->id)
+        ->where('following_id', '=', $id)
+        ->first()
+        ->delete();
+      return redirect()
+        ->route('home.index')->with('success', "Successfully unfollowed");
+    }
 }

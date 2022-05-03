@@ -31,6 +31,8 @@ if (env('APP_ENV') !== 'local') {
 
 // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile_edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile_edit', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 
@@ -52,6 +54,7 @@ Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('c
 Route::get('/followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
 Route::get('/following/{id}', [FollowController::class, 'following'])->name('follow.following');
 Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow.follow');
+Route::post('/unfollow/{id}', [FollowController::class, 'unfollow'])->name('follow.unfollow');
 Route::post('/followP/{id}', [FollowController::class, 'followFromProfile'])->name('follow.followFromProfile');
 
 Route::post('/favorite/{id}', [FavoriteController::class, 'favorite'])->name('favorite.favorite');

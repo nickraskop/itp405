@@ -42,12 +42,15 @@
           <h3>{{ $post->user->name }}</h3>
           @if (Auth::check() && Auth::user()->id === $post->user->id)
           @elseif (Auth::check() && Auth::user()->following->where('id', '=', $post->user->id)->first() === null)
-          <form action="{{ route('follow.follow', [ 'id' => $post->user->id ]) }}" method="post">
-            @csrf
-            <button type="submit">Follow</button>
-          </form>
+            <form action="{{ route('follow.follow', [ 'id' => $post->user->id ]) }}" method="post">
+              @csrf
+              <button type="submit">Follow</button>
+            </form>
           @else
-            <p>Following</p>
+          <form action="{{ route('follow.unfollow', [ 'id' => $post->user->id ]) }}" method="post">
+            @csrf
+            <button type="submit">Unfollow</button>
+          </form>
           @endif
         </div>
       </a>

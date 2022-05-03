@@ -45,6 +45,16 @@
       display: flex;
       margin-bottom: 5px;
     }
+    #userEdit a {
+      border-color: black;
+      border-width: 1px;
+      border-style: solid;
+      text-decoration: none;
+      color: black;
+    }
+    #userEdit p {
+      padding-top: 10px;
+    }
     #username {
       margin-right: 10px;
     }
@@ -103,7 +113,7 @@
           <div id="userEdit">
             <h1 id="username">{{ $user->name }}</h1> 
             @if (Auth::user()->id == $user->id)
-              <button>Edit Profile</button>
+              <a href="{{ route('profile.edit') }}"><p>Edit Profile</p></a>
             @else
               @if (Auth::user()->following->where('id', '=', $user->id)->first() === null)
               <form action="{{ route('follow.followFromProfile', [ 'id' => $user->id ]) }}" method="post">
