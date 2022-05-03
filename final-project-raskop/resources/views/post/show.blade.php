@@ -80,7 +80,7 @@
           Write a comment
         </button>
 
-        @foreach($post->comments as $comment)
+        @foreach($post->comments->sortByDesc('created_at') as $comment)
           <div id="namecomment">
             <img src="{{ $comment->user->pfp }}" alt="">
             <h4 id="name">{{ $comment->user->name }}<h4>
