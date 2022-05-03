@@ -9,11 +9,16 @@ use App\Models\Post;
 use App\Models\User;
 use Auth;
 use Hash;
+use Illuminate\Support\Facades\Gate;
 
 class ProfileController extends Controller
 {
     public function show($id)
     {
+      $authcheck = Auth::check();
+      if (Gate::denies('view-profile', $authcheck)) {
+        abort(403);
+      }
       $user = User::where('id', '=', $id)->first();
       $numFollowers = $user->followers->count();
       $followers = $user->followers;
