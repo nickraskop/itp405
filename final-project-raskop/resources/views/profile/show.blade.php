@@ -57,6 +57,8 @@
     }
     #username {
       margin-right: 10px;
+      width: fit-content;
+      white-space: nowrap;
     }
     #bio {
       text-align: left;
@@ -65,6 +67,7 @@
     }
     #location {
       text-align: left;
+      width: 250px;
     }
     #pics {
       margin-top: 50px;
@@ -133,15 +136,15 @@
           <div id="sub">
             <div id="sub2">
               <div id="location">
-                <p>California, USA</p>
-                <p>Joined on {{ $user->created_at }}</p>
+                <p>📍  {{ $user->location }}</p>
+                <p>📅  Joined on {{ date_format($user->created_at, 'n/j/Y') }}</p>
+                <p>👋  {{ $user->bio }}</p>
               </div>
             </div>
             <a href="{{ route('post.create') }}"><img src="https://ecoloftinsulations.co.uk/wp-content/uploads/2019/10/Healthier-1.png" alt=""></a>
           </div>
         </div>
       </div>
-      <div id="bio"><p>Beats, bears, battlestar galactica.</p></div>
       <div id="pics">
         @foreach ($posts as $post)
           <div id="pic">

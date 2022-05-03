@@ -20,7 +20,7 @@
       </div>
       <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}">
+          <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}">
           @error('title')
             <small class="text-danger">{{$message}}</small>
           @enderror
@@ -28,6 +28,20 @@
       <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input type="password" name="password" id="password" class="form-control">
+          @error('title')
+            <small class="text-danger">{{$message}}</small>
+          @enderror
+      </div>
+      <div class="mb-3">
+          <label for="bio" class="form-label">Bio</label>
+          <input type="text" name="bio" id="bio" class="form-control" value="{{ old('bio', $user->bio) }}">
+          @error('title')
+            <small class="text-danger">{{$message}}</small>
+          @enderror
+      </div>
+      <div class="mb-3">
+          <label for="location" class="form-label">Bio</label>
+          <input type="text" name="location" id="location" class="form-control" value="{{ old('location', $user->location) }}">
           @error('title')
             <small class="text-danger">{{$message}}</small>
           @enderror

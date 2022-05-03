@@ -18,6 +18,14 @@
             <label class="form-label" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control">
         </div>
+        <div class="mb-3">
+            <label class="form-label" for="bio">Bio</label>
+            <input type="text" id="bio" name="bio" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="location">Location</label>
+            <input type="text" id="location" name="location" class="form-control">
+        </div>
         <p>Profile Picture</p>
         <input type="hidden" name="pfp" id="pfp" class="simple-file-upload">
         <br>

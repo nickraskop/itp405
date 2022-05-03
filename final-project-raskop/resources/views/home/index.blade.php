@@ -55,7 +55,7 @@
         </div>
       </a>
       <img src="{{ $post->photo }}" alt="">
-      <p>{{ $post->caption }}</p>
+      <h4>🗣️ {{ $post->caption }}</h4>
       @if($post->favorited->where('id', '=', Auth::user()->id)->first() === null)
         <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">
           @csrf
