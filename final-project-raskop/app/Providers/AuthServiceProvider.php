@@ -27,5 +27,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-profile', function ($authcheck) {
             return $authcheck;
         });
+
+        Gate::define('edit-comment', function ($commenter_id) {
+            return $comment->user_id === Auth::user()->id;
+        });
     }
 }

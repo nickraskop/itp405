@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Comment;
 use Auth;
+use Gate;
 
 class CommentController extends Controller
 {
@@ -37,21 +38,12 @@ class CommentController extends Controller
         ->with('success', "Your answer \"{$comment->body}\" was successfully posted.");
     }
 
-    // public function show($id)
-    // {
-    //     $invoice = Invoice::with([
-    //         'invoiceItems.track',
-    //         'invoiceItems.track.album',
-    //         'invoiceItems.track.album.artist',
-    //     ])->find($id);
-
-    //     return view('invoice.show', [
-    //         'invoice' => $invoice,
-    //     ]);
-    // }
-
     public function edit($id)
     {
+      // $commenter_id = Comment::where('id', '=', $id)->first()->user_id;
+      // if (Gate::denies('edit-comment', $commenter_id)) {
+      //   abort(403);
+      // }
       return view('comment.edit', ['id' => $id]);
     }
 

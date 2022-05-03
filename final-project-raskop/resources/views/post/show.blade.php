@@ -85,11 +85,13 @@
           <img src="{{ $comment->user->pfp }}" alt="">
           <h4 id="name">{{ $comment->user->name }}<h4>
           <h4 id="text">{{$comment->body}}</h4>
-          <a href="{{ route('comment.edit', [ 'id' => $comment->id ]) }}">Edit</a>
-          <form action="{{ route('comment.delete', [ 'id' => $comment->id ]) }}" method="post">
-            @csrf
-            <button type="submit">Delete</button>
-          </form>
+          @if (Auth::user()->id === $comment->user_id)
+            <a href="{{ route('comment.edit', [ 'id' => $comment->id ]) }}">Edit</a>
+            <form action="{{ route('comment.delete', [ 'id' => $comment->id ]) }}" method="post">
+              @csrf
+              <button type="submit">Delete</button>
+            </form>
+          @endif
         </div>
       
         <p>{{date_format($comment->created_at, 'n/j/Y')}} at {{date_format($comment->created_at, 'g:i A')}}</p>
