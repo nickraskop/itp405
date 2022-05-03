@@ -49,4 +49,25 @@ class CommentController extends Controller
     //         'invoice' => $invoice,
     //     ]);
     // }
+
+    public function edit($id)
+    {
+      return view('comment.edit', ['id' => $id]);
+    }
+
+    public function update($id, Request $request)
+    {
+      $request->validate([
+        'body' => 'required|min:5',
+      ]);
+
+      $comment = Comment::where('id', '=', $id)->first();
+      $post = $comment->post;
+
+      $comment->update([
+        'body' => $request->input('body'),
+      ]);
+
+      return redirect()->route('post.show', ['id' => $post->id]);
+    }
 }

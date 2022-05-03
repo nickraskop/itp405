@@ -79,17 +79,17 @@
         <button type="submit" class="btn btn-primary">
           Write a comment
         </button>
-
-        @foreach($post->comments->sortByDesc('created_at') as $comment)
-          <div id="namecomment">
-            <img src="{{ $comment->user->pfp }}" alt="">
-            <h4 id="name">{{ $comment->user->name }}<h4>
-            <h4 id="text">{{$comment->body}}</h4>
-          </div>
-          
-          <p>{{date_format($comment->created_at, 'n/j/Y')}} at {{date_format($comment->created_at, 'g:i A')}}</p>
-        @endforeach
       </form>
+      @foreach($post->comments->sortByDesc('created_at') as $comment)
+        <div id="namecomment">
+          <img src="{{ $comment->user->pfp }}" alt="">
+          <h4 id="name">{{ $comment->user->name }}<h4>
+          <h4 id="text">{{$comment->body}}</h4>
+          <a href="{{ route('comment.edit', [ 'id' => $comment->id ]) }}">Edit</a>
+        </div>
+      
+        <p>{{date_format($comment->created_at, 'n/j/Y')}} at {{date_format($comment->created_at, 'g:i A')}}</p>
+      @endforeach
     </div>
   </div>
 @endsection
