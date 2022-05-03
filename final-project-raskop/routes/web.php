@@ -52,6 +52,7 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('comments/store/{id}', [CommentController::class, 'store'])->name('comment.store');
 Route::get('comments/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
 Route::post('comments/update/{id}', [CommentController::class, 'update'])->name('comment.update');
+Route::post('comments/delete/{id}', [CommentController::class, 'delete'])->name('comment.delete');
 
 Route::get('/followers/{id}', [FollowController::class, 'followers'])->name('follow.followers');
 Route::get('/following/{id}', [FollowController::class, 'following'])->name('follow.following');

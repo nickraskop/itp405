@@ -70,4 +70,13 @@ class CommentController extends Controller
 
       return redirect()->route('post.show', ['id' => $post->id]);
     }
+
+    public function delete($id)
+    {
+      $comment = Comment::where('id', '=', $id)->first();
+      $post = $comment->post;
+      $comment->delete();
+
+      return redirect()->route('post.show', ['id' => $post->id])->with('success', 'Successfully deleted comment');
+    }
 }
