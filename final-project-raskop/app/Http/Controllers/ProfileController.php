@@ -45,7 +45,8 @@ class ProfileController extends Controller
       User::where('id', '=', Auth::user()->id)->update([
         'name' => $request->input('name'),
         'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')), // Encrypt our password using bcrypt
+        'bio' => $request->input('bio'),
+        'location' => $request->input('location'),
       ]);
 
 

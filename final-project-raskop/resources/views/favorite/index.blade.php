@@ -40,22 +40,13 @@
         <div id="user">
           <img src="{{ $favorite->user->pfp }}" alt="">
           <h3>{{ $favorite->user->name }}</h3>
-          @if (Auth::check() && Auth::user()->id === $favorite->user->id)
-          @elseif (Auth::check() && Auth::user()->following->where('id', '=', $favorite->user->id)->first() === null)
-          <form action="{{ route('follow.follow', [ 'id' => $favorite->user->id ]) }}" method="post">
-            @csrf
-            <button type="submit">Follow</button>
-          </form>
-          @else
-            <p>Following</p>
-          @endif
         </div>
       </a>
-      <img src="{{ $favorite->photo }}" alt="">
+      <a href="{{ route('post.show', ['id' => $favorite->id]) }}"><img src="{{ $favorite->photo }}" alt=""></a>
       <p>{{ $favorite->caption }}</p>
-      <form action="{{ route('favorite.favorite', [ 'id' => $favorite->id ]) }}" method="post">
+      <form action="{{ route('favorite.unfavorite', [ 'id' => $favorite->id ]) }}" method="post">
         @csrf
-        <button type="submit">Favorite</button>
+        <button type="submit">Unfavorite</button>
       </form>
     </div>
   @endforeach

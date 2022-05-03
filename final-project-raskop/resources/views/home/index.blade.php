@@ -54,7 +54,7 @@
           @endif
         </div>
       </a>
-      <img src="{{ $post->photo }}" alt="">
+      <a href="{{ route('post.show', ['id' => $post->id]) }}"><img src="{{ $post->photo }}" alt=""></a>
       <h4>🗣️ {{ $post->caption }}</h4>
       @if($post->favorited->where('id', '=', Auth::user()->id)->first() === null)
         <form action="{{ route('favorite.favorite', [ 'id' => $post->id ]) }}" method="post">

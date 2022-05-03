@@ -26,13 +26,6 @@
           @enderror
       </div>
       <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" id="password" class="form-control">
-          @error('title')
-            <small class="text-danger">{{$message}}</small>
-          @enderror
-      </div>
-      <div class="mb-3">
           <label for="bio" class="form-label">Bio</label>
           <input type="text" name="bio" id="bio" class="form-control" value="{{ old('bio', $user->bio) }}">
           @error('title')
