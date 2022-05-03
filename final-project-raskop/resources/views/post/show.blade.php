@@ -1,5 +1,9 @@
 @extends("layouts.main")
 
+@section('title')
+  Post - {{ $post->caption }}
+@endsection
+
 @section("content")
   <style>
     

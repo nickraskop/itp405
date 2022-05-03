@@ -1,5 +1,8 @@
 @extends("layouts.main")
 
+@section('title')
+  Profile - {{ $user->name }}
+@endsection
 @section("content")
   <style>
     #content {

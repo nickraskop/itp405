@@ -46,7 +46,15 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-      // $request->validate()
+
+      $request->validate([
+        'name' => 'required|min:5|max:18',
+        'email' => 'required|min:5|max:18',
+        'bio' => 'required|min:5|max:18',
+        'location' => 'required|min:2|max:18',
+      ]);
+
+
       User::where('id', '=', Auth::user()->id)->update([
         'name' => $request->input('name'),
         'email' => $request->input('email'),

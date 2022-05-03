@@ -1,5 +1,6 @@
 @extends("layouts.main")
 
+@section('title', 'Favorites')
 @section("content")
   <style>
     #post {
