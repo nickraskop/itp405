@@ -33,4 +33,14 @@ class FavoriteController extends Controller
       ]);
     }
 
+    public function unfavorite($id)
+    {
+      UserPost::where('user_id', '=', Auth::user()->id)
+        ->where('post_id', '=', $id)
+        ->first()
+        ->delete();
+      return redirect()
+        ->route('home.index')->with('success', "Successfully unfavorited");
+    }
+
 }

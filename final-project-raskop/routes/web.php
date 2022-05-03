@@ -55,4 +55,5 @@ Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow.f
 Route::post('/followP/{id}', [FollowController::class, 'followFromProfile'])->name('follow.followFromProfile');
 
 Route::post('/favorite/{id}', [FavoriteController::class, 'favorite'])->name('favorite.favorite');
+Route::post('/unfavorite/{id}', [FavoriteController::class, 'unfavorite'])->name('favorite.unfavorite');
 Route::get('/favorites/{id}', [FavoriteController::class, 'index'])->name('favorite.index');

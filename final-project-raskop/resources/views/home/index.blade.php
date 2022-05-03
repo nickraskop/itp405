@@ -59,7 +59,10 @@
           <button type="submit">Favorite</button>
         </form>
       @else
-        <p>Favorited</p>
+        <form action="{{ route('favorite.unfavorite', [ 'id' => $post->id ]) }}" method="post">
+          @csrf
+          <button type="submit">Unfavorite</button>
+        </form>
       @endif
       <p><b>{{ $post->favorited->count() }} favorites</b></p>
     </div>
