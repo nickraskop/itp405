@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->belongsToMany(Post::class, 'user_posts', 'user_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'user_posts', 'user_id', 'post_id')->withPivot('created_at');
     }
 }

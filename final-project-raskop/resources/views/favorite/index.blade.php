@@ -40,6 +40,7 @@
         <div id="user">
           <img src="{{ $favorite->user->pfp }}" alt="">
           <h3>{{ $favorite->user->name }}</h3>
+          <p>Favorited on {{date_format($favorite->pivot->created_at, 'n/j/Y')}} at {{date_format($favorite->pivot->created_at, 'g:i A')}}</p>
         </div>
       </a>
       <a href="{{ route('post.show', ['id' => $favorite->id]) }}"><img src="{{ $favorite->photo }}" alt=""></a>
